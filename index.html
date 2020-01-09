@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
 <title>Arturo Pérez Roncero</title>
-<link rel="icon" href="demo_icon.jpg" type="image/jpg" sizes="16x16">
+<link rel="icon" href="demo_icon.jpg" type="image/jpg" sizes="16x16"> 
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet"> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+html {
+  scroll-behavior: smooth;
+}
 * {
   box-sizing: border-box;
 }
 
 /* Style the body */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Slab', serif;
   margin: 0;
 }
 
@@ -175,6 +179,7 @@ body {
 }
 </style>
 </head>
+
 <body>
 <div style="background-image: url('mande.png');">
 
@@ -226,22 +231,36 @@ function closeNav() {
   </div>
   <div class="main">
     <h2 id="anchor1"></h1>
-    <h1><big><big>Scintific Software</big></big></h1>
-    <h2>Interplanetary Superhighway</h2>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <h1><big><big><big>Scientific Software</big></big></big></h1>
+    <h2><big>Interplanetary Superhighway</big></h2>
+    <img src="lagrangianos.png" alt="Lagrangian Points" width="950px">
+    <h3>What is it?</h3>
+    <p>The Interplanetary Superhighway (IPS) is a set of pathways beetween planets and other bodies which require very little energy to pass through. They are delimited by the manifold created by every asymptotic trajectory which ends up in a halo orbit around one of the orbits. The Lagrangian points, the points where an object will maintain its position relative to other two much bigger objects, determine the gates beetween the pathways collected in the IPS. This is no coincidence, as halo orbits always have as centre of their trajectories the Lagrangian points L1 or L2.</p>
+    <h3>How to find it</h3>
+    <p>In order to calculate the IPS I first created a plane, where I placed the Earth (Blue sphere) and the Sun (Yellow sphere). I then recreated the three-body problem, or in other words, simulated the behaviour of the Sun, Earth and a third object. By assuming this third object had a negligible mass orbiting the sun at an angular velocity equal to Earth’s, and then changing its position to every possible point in the plane, I was able to graph the effective potential on said plane (white equipotential lines). This showed me the “gates” between planets, or Lagrangian points as I said earlier.</p>
+    <p>For a better understanding of the Lagrangian points, I placed 5 objects (Green spheres) on each of the points. Its trajectories are showed in red. The Lagrangian points L1 and L2 (the ones closest to the Earth) resulted in much more unstable trajectories around both the Sun and the Earth than the points L3, L4 and L5. However, although a bit calmer, the orbits of objects placed on L3 were still more unstable than those on L4 and L5.</p>
+    <p>My research on the topic is still in progress, but I will make sure to update my latest findings.</p>
     <br>
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Sep 2, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
+    <h2><big>The Millennium Run</big></h2>
+    <h3>What is it?</h3>
+    <video width="950" controls>
+    <source src="MR.mp4" type="video/mp4">
+    </video>
+    <p>The so called "Millennium Run" was a computer N-body simulation (a simulation of the behaviour of "N" particles under the influence of a certain force). Its goal was to find out how the universe evolved with time. Its results reinforced the Big Bang theory, closely resembling the Cosmological Background Radiation (CBR).</p>
+    <h3>How to make it</h3>
+    <p>I first tried simulating it using After Effects, which has a built in gravitational simulation. By modifying the default parameters and colors, I ended up with similar results.</p>
+    <video width="950" controls>
+    <source src="2.mp4" type="video/mp4">
+    </video>
+    <p>I then decided to code the whole myself, and procedeed to write a gravitational simulator from scratch. I used 20,000 particles, instead of the over 13 billion the latest Millennium Run did, so my computer wouldn't collapse into a singularity. Still, the results were similar. At the very beginning we see a structure similar to that in the CBR, which later becomes a sort of net connecting big chunks of particles (like in the Millennium Run). Lastly, all the particles join in very big blobs, a possible future for our own universe.</p>
+    <video width="950" controls>
+    <source src="3.mp4" type="video/mp4">
+    </video>
     <p>Some text..</p>
     <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
   </div>
 </div>
-
 <div class="footer">
   <h2>Footer</h2>
 </div>
-
 </body>
