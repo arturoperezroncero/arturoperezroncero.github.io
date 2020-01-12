@@ -82,7 +82,7 @@ body {
 
 /* Header/logo Title */
 .header {
-  padding: 250px;
+  padding: 200px;
   text-align: center;
   /*background: #FF5B5E;*/
   color: white;
@@ -133,20 +133,30 @@ body {
 }
 
 /* Create two unequal columns that sits next to each other */
-/* Sidebar/left column */
+/* Sidebar/left column
 .side {
-  -ms-flex: 20%; /* IE10 */
+  -ms-flex: 20%;
   flex: 20%;
   background-color: #f1f1f1;
   padding: 20px;
 }
 
+    <h2>No, for real, who am I?</h2>
+    <p>I enjoy human activities such as breathing, eating, and pursuing my meaningless dreams.</p>
+    <h3>Other interests</h3>
+    <div class="fakeimg" style="height:60px;">Scientific Software</div><br>
+    <div class="fakeimg" style="height:60px;">Videogame development</div><br>
+    <div class="fakeimg" style="height:60px;">Science Fiction</div>
+    <div class="fakeimg" style="height:60px;">Music</div>
+    <div class="fakeimg" style="height:60px;">Badminton</div>
+    <div class="fakeimg" style="height:60px;">Making crappy websites</div>
+
 /* Main column */
 .main {   
-  -ms-flex: 80%; /* IE10 */
-  flex: 80%;
+  -ms-flex: 100%; /* IE10 */
+  flex: 100%;
   background-color: white;
-  padding: 20px;
+  padding: 60px;
 }
 
 /* Fake image, just for this example */
@@ -219,21 +229,14 @@ function closeNav() {
 
 <div class="row">
   <div class="side">
-    <h2>No, for real, who am I?</h2>
-    <p>I enjoy human activities such as breathing, eating, and pursuing my meaningless dreams.</p>
-    <h3>Other interests</h3>
-    <div class="fakeimg" style="height:60px;">Scientific Software</div><br>
-    <div class="fakeimg" style="height:60px;">Videogame development</div><br>
-    <div class="fakeimg" style="height:60px;">Science Fiction</div>
-    <div class="fakeimg" style="height:60px;">Music</div>
-    <div class="fakeimg" style="height:60px;">Badminton</div>
-    <div class="fakeimg" style="height:60px;">Making crappy websites</div>
   </div>
   <div class="main">
     <h2 id="anchor1"></h1>
     <h1><big><big><big>Scientific Software</big></big></big></h1>
     <h2><big>Interplanetary Superhighway</big></h2>
-    <img src="lagrangianos.png" alt="Lagrangian Points" width="950px">
+    <div style="text-align:center;">
+    <img src="lagrangianos.png" alt="Lagrangian Points" width="100%">
+    </div>
     <h3>What is it?</h3>
     <p>The Interplanetary Superhighway (IPS) is a set of pathways beetween planets and other bodies which require very little energy to pass through. They are delimited by the manifold created by every asymptotic trajectory which ends up in a halo orbit around one of the orbits. The Lagrangian points, the points where an object will maintain its position relative to other two much bigger objects, determine the gates beetween the pathways collected in the IPS. This is no coincidence, as halo orbits always have as centre of their trajectories the Lagrangian points L1 or L2.</p>
     <h3>How to find it</h3>
@@ -241,26 +244,65 @@ function closeNav() {
     <p>For a better understanding of the Lagrangian points, I placed 5 objects (Green spheres) on each of the points. Its trajectories are showed in red. The Lagrangian points L1 and L2 (the ones closest to the Earth) resulted in much more unstable trajectories around both the Sun and the Earth than the points L3, L4 and L5. However, although a bit calmer, the orbits of objects placed on L3 were still more unstable than those on L4 and L5.</p>
     <p>My research on the topic is still in progress, but I will make sure to update my latest findings.</p>
     <br>
+    
     <h2><big>The Millennium Run</big></h2>
     <h3>What is it?</h3>
-    <video width="950" controls>
+    <div style="text-align:center;">
+    <video width="100%" controls>
     <source src="MR.mp4" type="video/mp4">
     </video>
+    </div>
     <p>The so called "Millennium Run" was a computer N-body simulation (a simulation of the behaviour of "N" particles under the influence of a certain force). Its goal was to find out how the universe evolved with time. Its results reinforced the Big Bang theory, closely resembling the Cosmological Background Radiation (CBR).</p>
     <h3>How to make it</h3>
     <p>I first tried simulating it using After Effects, which has a built in gravitational simulation. By modifying the default parameters and colors, I ended up with similar results.</p>
-    <video width="950" controls>
+    <p>I then decided to code the whole myself, and procedeed to write a gravitational simulator from scratch (Video on the right). I used 20,000 particles, instead of the over 13 billion the latest Millennium Run did, so my computer wouldn't collapse into a singularity. Still, the results were similar. At the very beginning we see a structure similar to that in the CBR, which later becomes a sort of net connecting big chunks of particles (like in the Millennium Run). Lastly, all the particles join in very big blobs, a possible future for our own universe.</p>
+    <p>I developed a 3D version too.</p>
+
+    <video width="45%" controls>
     <source src="2.mp4" type="video/mp4">
     </video>
-    <p>I then decided to code the whole myself, and procedeed to write a gravitational simulator from scratch. I used 20,000 particles, instead of the over 13 billion the latest Millennium Run did, so my computer wouldn't collapse into a singularity. Still, the results were similar. At the very beginning we see a structure similar to that in the CBR, which later becomes a sort of net connecting big chunks of particles (like in the Millennium Run). Lastly, all the particles join in very big blobs, a possible future for our own universe.</p>
-    <video width="950" controls>
+    <video width="45%" controls>
     <source src="3.mp4" type="video/mp4">
     </video>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+    <h2><big>Electromagnetic simulators</big></h2>
+    <h3>Electric force simulator</h3>
+    <p>I started with the basics, simulating the Coulomb force, and then plotting it onto a plane. I then simulated different experiments: two positive charges approaching (on the left), or one positive and one negative (on the right).</p>
+
+    <video width="45%" controls>
+    <source src="a.mp4" type="video/mp4">
+    </video>
+    <video width="45%" controls>
+    <source src="b.mp4" type="video/mp4">
+    </video>
+
+    <p>I developed a field line plotter too.</p>
+
+    <div style="text-align:center;">
+    <img src="lines.png" alt="Field lines" width="100%">
+    </div>
+
+    <p>Finally, I tried plotting the equipotential lines of two colliding dipoles.</p>
+
+    <video width="49%" controls>
+    <source src="c.mp4" type="video/mp4">
+    </video>
+    <video width="49%" controls>
+    <source src="d.mp4" type="video/mp4">
+    </video>
+
+    <h3>Lorentz force simulator</h3>
+    <p>I became more and more interested in magnetism, after learning that it was, in fact, a relativistic consequence of the movement of charges. Trying to understand it, I coded a program which simulated the behaviour of particles (both positive and negative) approaching a magnetic dipole. The charge of the particles is randomly assigned, and the dipole is represented as a blues sphere, trying to mimic solar winds hitting Earth. The camera is rotating around Earth along one of its meridians.</p>
+
+    <div style="text-align:center;">
+    <video width="100%" controls>
+    <source src="e.mp4" type="video/mp4">
+    </video>
+    </div>
+    </div>
   </div>
 </div>
 <div class="footer">
-  <h2>Footer</h2>
+  <h2>Thanks for reading</h2>
 </div>
 </body>
