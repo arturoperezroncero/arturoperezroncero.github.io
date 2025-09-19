@@ -1,366 +1,695 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arturo Pérez Roncero | Curriculum Vitae</title>
+    <title>Arturo Pérez Roncero | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+	<link rel="icon" href="logo.png" type="image/png">
     <style>
-        /* --- Google Font --- */
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-
-        /* --- Global Styles & Resets --- */
-        :root {
-            --primary-color: #2c3e50; /* A dark slate blue */
-            --secondary-color: #3498db; /* A bright blue for links */
-            --background-color: #f4f7f6;
-            --card-background: #ffffff;
-            --text-color: #333333;
-            --subtle-text-color: #7f8c8d;
-            --border-color: #ecf0f1;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease;
         }
+        .section-card {
+			position: relative;
+			border-left: 6px solid transparent; /* subtle baseline */
+			transition: transform 0.3s ease, 
+						box-shadow 0.3s ease, 
+						background-color 0.3s ease, 
+						border-color 0.3s ease;
+			cursor: pointer;
+		}
 
-        /* --- Main Layout Container --- */
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: var(--card-background);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-radius: 8px;
-        }
+		.section-card:hover {
+			border-left-color: #ffffff; /* white highlight color */
+			transform: scale(1.025);
+			box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 
+						0 10px 10px -5px rgba(0,0,0,0.1);
+		}
 
-        /* --- Typography --- */
-        h1, h2, h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
+        .page {
+            display: none;
+            animation: fadeIn 0.7s ease-in-out;
         }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 400;
-        }
-        
-        a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--primary-color);
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
-
-        ul li {
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-        
-        ul li::before {
-            content: '•';
-            position: absolute;
-            left: -20px;
-            color: var(--secondary-color);
-        }
-
-        /* --- Header Section --- */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
-            color: var(--subtle-text-color);
-        }
-
-        /* --- Entry Styling (for Education & Experience) --- */
-        .entry {
-            margin-bottom: 2rem;
-            padding-left: 1rem;
-            border-left: 3px solid var(--border-color);
-        }
-        
-        .entry:hover {
-            border-left-color: var(--secondary-color);
-        }
-
-        .entry-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
-
-        .entry-institution {
-            font-weight: 700;
-            color: var(--subtle-text-color);
-        }
-        
-        .entry-date {
-            font-style: italic;
-            color: var(--subtle-text-color);
-            white-space: nowrap;
-        }
-
-        .entry-details {
-            margin-top: 0.5rem;
-            padding-left: 1rem;
-        }
-        
-        .thesis-title {
-            font-weight: 700;
+        .page.active {
             display: block;
-            margin-top: 0.5rem;
         }
-
-        /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .skill-category h3 {
-             font-size: 1.2rem;
-             border-bottom: 1px solid var(--border-color);
-             padding-bottom: 0.3rem;
-             margin-bottom: 1rem;
+        .nav-link {
+            transition: background-color 0.2s, color 0.2s;
         }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--subtle-text-color);
+        .nav-link:hover {
+            background-color: #f37753;
+            color: #020a1f;
         }
-        
-        .references {
-             margin-bottom: 2rem;
+        /* Reading UI Styles */
+        .reading-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
-            }
-
-            .entry-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        .reading-content h1, .reading-content h2 {
+            margin-top: 2em;
+            margin-bottom: 1em;
+            line-height: 1.2;
         }
+		.text-gray-200, .text-gray-300, .text-gray-400, .text-white\/80 {
+			color: #ffffff !important;
+		}
     </style>
 </head>
-<body>
+<body class="bg-[#020a1f] text-gray-200">
 
-    <div class="container">
-        <header class="header">
-            <h1>Arturo Pérez Roncero</h1>
-            <div class="contact-info">
-                <span><a href="mailto:arturo.perez.roncero@gmail.com">arturo.perez.roncero@gmail.com</a></span>
-                <span>+34 693 49 25 29</span>
-                <span>Madrid, Spain</span>
-                <span><a href="https://arturoperezroncero.github.io/" target="_blank">Website Portfolio</a></span>
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border-b-2 border-white/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" id="home-button" class="text-2xl font-bold tracking-tighter text-white cursor-pointer hover:text-[#f37753] transition-colors nav-link" data-target="home-page">
+                Arturo Pérez Roncero
+            </a>
+            <div class="relative">
+                <button id="menu-button" class="p-2 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <nav id="dropdown-menu" class="hidden absolute right-0 mt-2 w-56 bg-[#0d1b2a]/95 backdrop-blur-md rounded-lg shadow-xl ring-1 ring-white/10 overflow-hidden">
+                    <a href="#home" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="home-page">Home</a>
+                    <a href="#education" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="education-page">Education</a>
+                    <a href="#experience" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="experience-page">Experience & Awards</a>
+                    <a href="#skills" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="skills-page">Skills</a>
+                    <a href="#interests" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="interests-page">Interests & Projects</a>
+                    <a href="#writing" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="writing-page">Sci-Fi Writing</a>
+                    <a href="#blog" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="blog-page">Blog</a>
+                    <a href="#contact" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="contact-page">Contact</a>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            <section id="education">
-                <h2>Education</h2>
-                <div class="entry">
-                    <div class="entry-header">
-                        <h3>M.S. in Astrophysics</h3>
-                        <span class="entry-date">09/2024 - 06/2025</span>
-                    </div>
-                    <p class="entry-institution">Universidad Complutense de Madrid</p>
-                    <div class="entry-details">
-                        <span class="thesis-title">Master's Thesis (9.2/10):</span> In Search of the Traces of the Evolution of AGB Binary Stars and pPNe: A Study of Variability with TESS.
-                        <ul>
-                            <li>Researched mechanisms behind brightness variability in AGB stars and pPNe using TESS data.</li>
-                            <li>Studied new methods for flickering characterization in evolved stars.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="entry">
-                    <div class="entry-header">
-                        <h3>B.S. in Physics</h3>
-                        <span class="entry-date">09/2020 - 06/2024</span>
-                    </div>
-                    <p class="entry-institution">Universidad Complutense de Madrid</p>
-                    <div class="entry-details">
-                        <span class="thesis-title">Bachelor's Thesis (8/10):</span> Study of colour-magnitude diagrams with Gaia data.
-                        <ul>
-                            <li>Studied Color-Magnitude diagrams using Gaia Data Release 3.</li>
-                            <li>Performed Isochrone fittings of 6 open clusters using Bayesian statistics.</li>
-                        </ul>
-                    </div>
-                </div>
-                 <div class="entry">
-                    <div class="entry-header">
-                        <h3>Double Baccalaureate: International & Spanish Science</h3>
-                         <span class="entry-date">09/2018 - 06/2020</span>
-                    </div>
-                    <p class="entry-institution">IES Ramiro de Maeztu</p>
+    <main class="container mx-auto p-6 md:p-12">
+        <!-- Main Page / Home -->
+        <div id="home-page" class="page active">
+            <section class="text-center mb-16">
+                <img src="logo.png" alt="Arturo Pérez Roncero" class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover mx-auto mb-6 border-4 border-gray-600 shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-black tracking-tighter text-white">Arturo Pérez Roncero</h1>
+                <p class="text-lg md:text-xl text-white/80 mt-2">Astrophysics Graduate & Physics Researcher</p>
+                <div class="mt-6 flex justify-center items-center space-x-6 text-white/80">
+                     <a href="mailto:arturo.perez.roncero@gmail.com" class="hover:text-[#f37753] transition-colors">arturo.perez.roncero@gmail.com</a>
                 </div>
             </section>
 
-            <section id="research">
-                <h2>Research Experience</h2>
-                <div class="entry">
-                    <div class="entry-header">
-                        <h3>Summer Research Intern</h3>
-                        <span class="entry-date">June - July 2025</span>
+            <div class="flex flex-col items-center space-y-8">
+                <!-- Education -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="education-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Education</h2>
+                    <div class="space-y-4 text-white">
+                        <div>
+                            <h3 class="font-bold text-lg">M.S. in Astrophysics</h3>
+                            <p class="text-sm">Master’s Thesis (9.2/10): <span class="italic">In Search of the Traces of the Evolution of AGB Binary Stars and pPNe...</span></p>
+                            <p class="text-sm font-semibold">Mean Score: 8.41/10</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">B.S. in Physics</h3>
+                            <p class="text-sm">Bachelor’s Thesis (8/10): <span class="italic">Study of colour-magnitude diagrams with Gaia data</span></p>
+                            <p class="text-sm font-semibold">Mean Score: 7.56/10</p>
+                        </div>
                     </div>
-                    <p class="entry-institution">CAB (Centro de Astrobiología) - with Dr. Paulo Alberto Miles Páez</p>
-                    <div class="entry-details">
-                        <ul>
-                            <li>Analyzed CRIRES/VLT spectra to study H3+ auroral emission in brown dwarfs.</li>
+                </div>
+                <!-- Experience -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="experience-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Experience & Awards</h2>
+                    <div class="space-y-4 text-white">
+                        <div>
+                            <h3 class="font-bold text-lg">Summer Research Intern</h3>
+                            <p class="text-sm">CAB (Centro de Astrobiología), analyzing CRIRES/VLT spectra.</p>
+                        </div>
+                         <div>
+                            <h3 class="font-bold text-lg">Key Awards</h3>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Aditus Scholarship</li>
+                                <li>1st place in HP CodeWars (2020)</li>
+                                <li>Secondary Education Honorary Diploma</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Skills -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="skills-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Skills</h2>
+                    <div class="space-y-3 text-white">
+                        <p><strong>Languages:</strong> Fluent in English (C2), Spanish (Native), basic French.</p>
+                        <p><strong>Programming:</strong> Fluent in Python, Matlab. Basic Java, C++.</p>
+                        <p><strong>Astro Software:</strong> TopCat, Aladin, VOSA, Gaia & TESS data.</p>
+                        <p><strong>Other Tools:</strong> Latex, Blender, Adobe Suite, Excel.</p>
+                    </div>
+                </div>
+                 <!-- Interests -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="interests-page">
+                     <h2 class="text-3xl font-bold mb-4 text-white">Interests & Projects</h2>
+                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center text-white">
+                        <div><p class="font-semibold">Astronomy Channel</p><p class="text-sm opacity-80">Educational YouTube</p></div>
+                        <div><p class="font-semibold">Digital Art</p><p class="text-sm opacity-80">3D scenes in Blender</p></div>
+                        <div><p class="font-semibold">Music</p><p class="text-sm opacity-80">Drummer in Epsilon Mechanism</p></div>
+                     </div>
+                </div>
+				<!-- scifi -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="writing">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Sci-Fi Writing</h2>
+                    <div class="space-y-3 text-white">
+                        <p><strong>Barren Star:</strong> White dwarf mining can be dangerous.</p>
+                        <p><strong>Sirius B:</strong> The sudden disappearance of a star is not taken lightly by astronomers.</p>
+                        <p><strong>Star Shaper:</strong> Von-Neumann probes arrive on Earth.</p>
+                    </div>
+                </div>
+				<!-- blog -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="blog">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Blog</h2>
+                    <div class="space-y-3 text-white">
+                    </div>
+                </div>
+				<!-- contact -->
+                <div class="section-card w-full max-w-4xl bg-[#0d1b2a]/70 p-8 rounded-2xl border-4 border-white/10" data-target="contact">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Contact & References</h2>
+                    <div class="space-y-3 text-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subdirectory Pages -->
+        <!-- Education Page -->
+        <div id="education-page" class="page min-h-screen" style="--section-color: #000310;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Education</h1>
+                <div class="space-y-10 mb-12">
+                     <!-- Master's Degree -->
+                    <div class="border-l-4 border-[#f37753] pl-6">
+                        <h2 class="text-3xl font-bold">M.S. in Astrophysics</h2>
+                        <p class="text-gray-400 mb-2">Universidad Complutense de Madrid | 09/2024 - 06/2025</p>
+                        <p class="italic">Thesis: In Search of the Traces of the Evolution of AGB Binary Stars and pPNe: A Study of Variability with TESS</p>
+                    </div>
+                    <!-- Bachelor's Degree -->
+                    <div class="border-l-4 border-[#b8415c] pl-6">
+                        <h2 class="text-3xl font-bold">B.S. in Physics</h2>
+                        <p class="text-gray-400 mb-2">Universidad Complutense de Madrid | 09/2020 - 06/2024</p>
+                         <p class="italic">Thesis: Study of colour-magnitude diagrams with Gaia data</p>
+                    </div>
+                    <!-- Baccalaureate -->
+                    <div class="border-l-4 border-[#6d2b59] pl-6">
+                         <h2 class="text-3xl font-bold">Double Baccalaureate</h2>
+                         <p class="text-gray-400 mb-2">IES Ramiro de Maeztu | 09/2018 - 06/2020</p>
+                          <p class="italic">Thesis: Energy cost and flight time of an orbital maneuver: from Hohmann transfers to the Interplanetary Transport Network</p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-6 mt-12 border-t border-white/10 pt-8">Downloadable Works</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3">Theses</h3>
+                        <ul class="space-y-2">
+                            <li><a href="Education/Master_Thesis.pdf" download class="text-[#f37753] hover:underline">Master's Thesis PDF</a></li>
+                            <li><a href="Education/Master_Thesis_Presentation.pdf" download class="text-[#f37753] hover:underline">Master's Thesis Presentation</a></li>
+                            <li><a href="Education/Bachelor_Thesis.pdf" download class="text-[#f37753] hover:underline">Bachelor's Thesis PDF</a></li>
+                            <li><a href="Education/Bacca_Thesis.pdf" download class="text-[#f37753] hover:underline">Baccalaureate Thesis PDF</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold mb-3">Bachelor Coursework</h3>
+                        <ul class="space-y-2">
+                            <li><a href="Education/cone.pdf" download class="text-[#f37753] hover:underline">Project: Light Cone</a></li>
+                            <li><a href="Education/rotor.pdf" download class="text-[#f37753] hover:underline">Project: Symmetrical Rotor</a></li>
+                        </ul>
+                        <h3 class="text-xl font-semibold mb-3 mt-4">Master Coursework</h3>
+                        <ul class="space-y-2">
+                            <li><a href="Education/master_1.pdf" download class="text-[#f37753] hover:underline">Project: Master Work 1</a></li>
+                            <li><a href="Education/master_2.pdf" download class="text-[#f37753] hover:underline">Project: Master Work 2</a></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold mb-3">Baccalaureate Coursework</h3>
+                        <ul class="space-y-2">
+                            <li><a href="Education/mini_fis.pdf" download class="text-[#f37753] hover:underline">Physics Mini-Project</a></li>
+                            <li><a href="Education/mini_quim.pdf" download class="text-[#f37753] hover:underline">Chemistry Mini-Project</a></li>
+                            <li><a href="Education/mini_mat.pdf" download class="text-[#f37753] hover:underline">Mathematics Mini-Project</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Awards Page -->
+        <div id="experience-page" class="page min-h-screen" style="--section-color: #001947;">
+             <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Experience & Awards</h1>
+                <div class="space-y-10">
+                    <div class="border-l-4 border-[#f37753] pl-6">
+                         <h2 class="text-3xl font-bold">Summer Research Intern</h2>
+                         <p class="text-gray-400 mb-2">CAB (Centro de Astrobiología) | with Dr. Paulo Alberto Miles Páez | June–July 2025</p>
+                         <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Analyzed CRIRES/VLT spectra to study H₃⁺ auroral emission in brown dwarfs and planetary-mass objects.</li>
                             <li>Gained experience in data reduction, Python-based spectral analysis, and substellar atmosphere physics.</li>
+                         </ul>
+                    </div>
+                    <div class="border-l-4 border-[#b8415c] pl-6">
+                         <h2 class="text-3xl font-bold">Honors & Awards</h2>
+                         <ul class="list-disc list-inside text-gray-300 space-y-2">
+                             <li>Aditus Scholarship, excellence scholarship given to students applying to universities abroad.</li>
+                             <li>1st place in HP CodeWars Python tournament (2020).</li>
+                             <li>Secondary Education Honorary Diploma.</li>
+                             <li>Educational Enrichment Program for Students with High Abilities of the Community of Madrid (PEAC).</li>
+                             <li>Participated in numerous Physics Olympiads, and won several high school science fairs.</li>
+                         </ul>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <!-- Skills Page -->
+        <div id="skills-page" class="page min-h-screen" style="--section-color: #114D97;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Skills</h1>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Languages -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Languages</h2>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Fluent in English (C2 Proficiency)</li>
+                            <li>Fluent in Spanish (Native)</li>
+                            <li>Basic knowledge of French</li>
+                        </ul>
+                    </div>
+                    <!-- Computer Skills -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Computer Skills</h2>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Fluent in Python and Matlab</li>
+                            <li>Basic knowledge of Java and C++</li>
+                            <li><a href="https://github.com/arturoperezroncero" target="_blank" class="text-[#f37753] hover:underline">GitHub Repository</a></li>
+                            <li>Stellar astrophysics Android App</li>
+                        </ul>
+                    </div>
+                    <!-- Other Software -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Other Software</h2>
+                         <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Astronomical:</strong> TopCat, Aladin, VOSA, Gaia, TESS</li>
+                            <li><strong>Productivity:</strong> Latex, Excel</li>
+                            <li><strong>Creative:</strong> Blender, Adobe After Effects, Premiere, Photoshop</li>
                         </ul>
                     </div>
                 </div>
-            </section>
-            
-            <section id="awards">
-                <h2>Honors & Awards</h2>
-                 <ul>
-                    <li>1st place in HP CodeWars Python tournament (2020).</li>
-                    <li>Aditus Scholarship for students applying to universities abroad.</li>
-                    <li>Secondary Education Honorary Diploma.</li>
-                    <li>Educational Enrichment Program for Students with High Abilities (PEAC).</li>
-                    <li>Participant in numerous Physics Olympiads and winner of several high school science fairs.</li>
-                </ul>
-            </section>
-
-            <section id="skills">
-                <h2>Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages</h3>
-                        <ul>
-                            <li>Spanish (Native)</li>
-                            <li>English (C2 Proficiency)</li>
-                            <li>French (Basic)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Computer Languages</h3>
-                        <ul>
-                            <li>Python (Fluent)</li>
-                            <li>Matlab (Fluent)</li>
-                            <li>Java (Basic)</li>
-                            <li>C++ (Basic)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Astronomical Software</h3>
-                        <ul>
-                            <li>TopCat, Aladin, VOSA</li>
-                            <li>Gaia & TESS Data Handling</li>
-                            <li>Spanish Virtual Observatory</li>
-                        </ul>
-                    </div>
-                     <div class="skill-category">
-                        <h3>Other Software</h3>
-                        <ul>
-                            <li>LaTeX (Experienced)</li>
-                            <li>Blender (Extensive)</li>
-                            <li>Adobe Premiere & After Effects</li>
-                            <li>Excel & Adobe Photoshop</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="teaching">
-                <h2>Teaching & Outreach</h2>
-                <ul>
-                    <li>Lecturer for "Science Week" astrophysics events.</li>
-                    <li>Instructor in astronomy student-led activities.</li>
-                    <li>Programming lesson instructor for the public.</li>
-                    <li>Tutor for high school math and science students.</li>
-                </ul>
-            </section>
-            
-             <section id="interests">
-                <h2>Interests & Projects</h2>
-                <ul>
-                    <li><strong>Astronomy Outreach:</strong> Creator of an educational YouTube Channel.</li>
-                    <li><strong>Digital Art:</strong> Making sci-fi inspired scenes in Blender. See my <a href="#">Artstation portfolio</a>.</li>
-                    <li><strong>Sci-Fi Writing:</strong> Avid reader and award-winning short story author.</li>
-                    <li><strong>Music:</strong> Experienced drummer, guitarist, and bassist in the band Epsilon Mechanism.</li>
-                    <li><strong>Game Development:</strong> Published a game on the Play Store.</li>
-                    <li><strong>Climbing (V5),</strong> Hiking, and Badminton.</li>
-                </ul>
-            </section>
-        </main>
-
-        <footer>
-            <div class="references">
-                <h3>References</h3>
-                <p><strong>Carmen Sánchez Contreras</strong> (Master's Thesis Supervisor) - csanchez@cab.inta-csic.es</p>
-                <p><strong>David Montes Gutiérrez</strong> (Degree's Thesis Supervisor) - dmontes@ucm.es</p>
             </div>
-            <p>&copy; 2025 Arturo Pérez Roncero</p>
-        </footer>
+        </div>
 
-    </div>
+        <!-- Interests Page -->
+        <div id="interests-page" class="page min-h-screen" style="--section-color: #000000;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-8xl font-black mb-8 tracking-tighter">Interests & Projects</h1>
+                <div class="space-y-12">
+                    <!-- Digital Art -->
+                    <div>
+					  <h2 class="text-5xl font-bold mb-4">Digital Art</h2>
+					  <p class="text-2xl font-bold mb-8">
+						I enjoy creating sci-fi inspired scenes in Blender. You can find my full portfolio on 
+						<a href="https://www.artstation.com/arturoperez" target="_blank" class="text-[#f37753] hover:underline">Artstation</a>. 
+						Here are a few examples:
+					  </p>
 
+					  <!-- Grid -->
+					  <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+						<img src="https://cdnb.artstation.com/p/assets/images/images/033/909/933/large/arturo-perez-def.jpg?1610899056" 
+							 alt="Blender Render 1" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+						<img src="https://cdnb.artstation.com/p/assets/images/images/045/773/355/large/arturo-perez-5.jpg?1643503389" 
+							 alt="Blender Render 2" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+						<img src="https://cdnb.artstation.com/p/assets/images/images/045/479/573/large/arturo-perez-26.jpg?1642802224" 
+							 alt="Blender Render 3" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+						<img src="https://cdna.artstation.com/p/assets/images/images/043/078/600/large/arturo-perez-14b.jpg?1636245786" 
+							 alt="Blender Render 4" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+						<img src="https://cdnb.artstation.com/p/assets/images/images/044/184/113/large/arturo-perez-11.jpg?1639329922" 
+							 alt="Blender Render 5" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+						<img src="https://cdna.artstation.com/p/assets/images/images/042/026/044/large/arturo-perez-a4.jpg?1633378146" 
+							 alt="Blender Render 6" 
+							 class="rounded-lg aspect-square object-cover cursor-pointer border-4 border-black" 
+							 onclick="openLightbox(this.src)">
+					  </div>
+					</div>
+
+					<!-- Fullscreen Lightbox -->
+					<div id="lightbox" class="fixed inset-0 bg-black hidden items-center justify-center z-[9999]">
+					  <button onclick="closeLightbox()" 
+							  class="absolute top-6 right-8 text-white text-5xl font-bold z-[10000]">&times;</button>
+					  <img id="lightbox-img" src="" class="max-h-screen max-w-screen object-contain">
+					</div>
+					
+					
+					
+					
+					
+                    <!-- Music -->
+                     <div>
+                        <h2 class="text-5xl font-bold mb-4">Music</h2>
+                        <p class="text-2xl font-bold mb-4">I am the drummer for Epsilon Mechanism, an alternative rock band. You can find us on <a href="https://open.spotify.com/intl-es/artist/6PxKPpLevL5UIP0RZ1ZuCP" target="_blank" class="text-[#f37753] hover:underline">Spotify</a> and <a href="https://www.youtube.com/@epsilonmechanism" target="_blank" class="text-[#f37753] hover:underline">YouTube</a>.</p>
+                         <div class="grid md:grid-cols-2 gap-8">
+                            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KmXyMDJXGNIkevySS4Ogy?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            <iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/Sn3IrTKWe9g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                         </div>
+                    </div>
+                     <!-- YT Channel -->
+                     <div>
+                        <h2 class="text-5xl font-bold mb-4">Educational Content</h2>
+                        <p class="text-2xl font-bold mb-4">I run an <a href="https://www.youtube.com/@artper8565" target="_blank" class="text-[#f37753] hover:underline">educational YouTube channel</a> about astronomy. Below is a presentation I gave on stellar evolution.</p>
+                         <video class="w-full max-w-3xl mx-auto rounded-lg" controls>
+                            <source src="stellar_talk.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Writing Page -->
+        <div id="writing-page" class="page min-h-screen" style="--section-color: #793599;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Sci-Fi Writing</h1>
+                <p class="text-lg text-gray-300 mb-10 max-w-3xl">I write short stories, some of which have won awards. Here is a collection of my work. Please feel free to read or download.</p>
+                <div class="space-y-8">
+                    <!-- Barren Star -->
+                    <div class="border-l-4 border-white/20 pl-6 py-2">
+                        <p class="text-sm text-gray-400">2022</p>
+                        <h2 class="text-3xl font-bold mt-1 mb-2">Barren Star</h2>
+                        <p class="text-gray-300 max-w-2xl mb-4">A lone prospector is sent to retrieve a precious material only found in black dwarfs' crystallized interiors.</p>
+                        <div class="flex space-x-4">
+                            <a href="#writing/barren-star" class="font-semibold text-[#f37753] hover:underline nav-link" data-target="reading-barren-star">Read Online &rarr;</a>
+                            <a href="Books/Barren_Star-2022.pdf" download class="font-semibold text-[#f37753] hover:underline">Download PDF &darr;</a>
+                        </div>
+                    </div>
+                    <!-- Sirius B -->
+                     <div class="border-l-4 border-white/20 pl-6 py-2">
+                        <p class="text-sm text-gray-400">2186 (Fictional Date)</p>
+                        <h2 class="text-3xl font-bold mt-1 mb-2">Sirius-B-2186</h2>
+                        <p class="text-gray-300 max-w-2xl mb-4">When Sirius B suddenly disappeared from the sky in 2057, scientists from all over the world came up with ideas on how it could have happened. Only time could tell.</p>
+                        <a href="Books/Sirius-b-2186.pdf" download class="font-semibold text-[#f37753] hover:underline">Download PDF &darr;</a>
+                    </div>
+                     <!-- Star Shaper -->
+                     <div class="border-l-4 border-white/20 pl-6 py-2">
+                        <p class="text-sm text-gray-400">2022</p>
+                        <h2 class="text-3xl font-bold mt-1 mb-2">Star Shaper</h2>
+                        <p class="text-gray-300 max-w-2xl mb-4">A hive of alien von Neumann probes arrives on Earth. We always assumed we would be the first to launch them.</p>
+                        <a href="Books/Star_Shaper-2022.pdf" download class="font-semibold text-[#f37753] hover:underline">Download PDF &darr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Reading View for Barren Star -->
+        <div id="reading-barren-star" class="page min-h-screen text-white" style="--section-color: #301360;">
+            <div class="reading-content p-4 md:p-8">
+                <a href="#writing" class="nav-link text-[#f37753] hover:underline mb-8 inline-block" data-target="writing-page">&larr; Back to Writing</a>
+                <h1 class="text-5xl font-black tracking-tighter">And I cannot help but wonder: do neutron stars dream of neutron sheep?</h1>
+                <h1 class="text-2xl font-black tracking-tighter; margin-bottom: 3em;">By Arturo Pérez Roncero</h1>
+				
+				<p style="text-indent: 2em; margin-bottom: 1em;"> </p>
+
+                <p style="text-indent: 2em; margin-bottom: 1em;">I woke up from hibernation three days ago, right before reaching my target. That is an extremely close margin for missions this dangerous, but keeping me awake was much more expensive than keeping me frozen. My ship wasn&#x27;t even pressurized, as holes in the hull were pretty much a guarantee in a voyage this long.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The ship shudders as it makes its last burn, reaching a highly eccentric, but fuel-cheap, hyperbolic orbit as close to the system&#x27;s star as it can get. The star in question is a $0.005$ solar mass black dwarf the size of 7 Earths. Pretty light for a black dwarf. In fact, it&#x27;s hundreds of times lighter than it should. That is precisely why I was sent here. There is only one thing in the universe that can fuck up a star this badly: life.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Black dwarfs form when the degenerate outer shells of a white dwarf begin to cool off after billions of years. As it radiates energy, degeneracy fades, and the ions form very strong bonds between them, creating an extremely pure crystal lattice so dense that in order to breach the star, the ship launches several 10 gigaton thermonuclear warheads at the exact same spot on its surface. One after the other, the explosions crack open the star. On Earth, they would have leveled a continent. Here they dug up a 25-meters deep hole.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">That&#x27;s my way in. A 100 tons of metal, fuel and batteries drop from the ship, with me inside. As I fall, the lander deploys a huge superconductive net behind us, surrounded by 3 smaller ones. The intense magnetic fields produced by the star&#x27;s nucleus produce huge Lorentz forces inside the parachutes, generating Eddy currents, which help break my fall. Diamagnetic sheets of metal in the three side-parachutes get magnetized by the star&#x27;s field, softening my landing even more. By carefully applying heat to them, I&#x27;m able to control their magnetization, and slightly correct my trajectory.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">A painfully long high-acceleration burn just at the end of the fall stops me from getting smashed on the surface. The lander touches down a few hundred meters from the hole made by the bombs, where electrons from beta decays cruise through the crystal at relativistic speeds, emitting a soft blue glow in the process. I&#x27;m carefully deployed inside my Sub, a robust land-submarine on tracks, abundantly cushioned on the inside. This prevents me from succumbing to the strong gravitational attraction on the surface of the star, 40 times that of Earth&#x27;s. The suit quickly dispenses directly into my bloodstream a variety of drugs which avoid my otherwise imminent death. After 45 minutes on the surface, even my robotic hearts will be unable to pump blood up to my brain, but hopefully I&#x27;ll be on my way back home before that.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Walking on a star, even inside a motorized, state-of-the-art submarine such as mine, is extremely tedious. Every movement is exceedingly slow, made with the upmost care, as even a 2 centimeter drop would mean certain death for the pilot. Luckily for me, gravity has flattened out the terrain to a point where millimetric protuberances are a rare find. With caution, I begin to head for the hole. I need to be fast. I can&#x27;t communicate with the ship due to the intense electromagnetic interference produced by the star, which means that in case of a delay, the ship has no way of knowing I need it to wait for me. That&#x27;s company policy for you.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I meticulously crawl my way to the hole, and carefully set up an improvised crane to lower me. The orifice intersects 20 meters below me with a flat cavern 15 meters wide and 4 meters high.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">This is the reason the star is so light relative to its size: it&#x27;s hollow. As hostile as degenerate plasma may seem, if a white dwarf has enough metallicity, self-replicating organisms will begin to pop up all over its outer layers. Life first takes extremely simple forms, a bunch of weakly bounded atoms carrying out an almost random walk through the hot plasma as they are bombarded by extremely energetic electrons, making more of themselves at an excruciatingly leisurely pace. As the star cools, they slowly but surely grow in numbers, fleeing to the metal-rich and cool atmosphere of the star. There they thrive, condensing into more and more complex shapes, proliferating all over the surface of the star.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Eventually, the star loses degeneracy on its outermost layers, and life journeys its way back into the partially crystallized crust. However, extremely energetic radiation coming from the star inhibits the development of genetic material, hindering the complexity achievable by life.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Still, the plentiful energy provided by the star at this point in its evolutionary path grants life the opportunity to somewhat diverge. While simple fungi-like crystal formations remain on the surface, feeding on the star’s radiation, more complex organisms can develop on land, learning to gather energy in more efficient ways that allow them to grow in size.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The cooling process of a white dwarf is riddled with complex intricacies. As it cools, chemical gradients form inside it as heavier elements concentrate towards the inner core. The flows of elements intertwine, the lighter elements protruding through the heavier ones in large appendages of matter, generating double diffusive convective processes. As the flow reaches new heights, the enormous angular velocities of the star create speed differentials in the vertical stream of matter, skewing it perpendicularly to its motion, provoking Kevin-Helmholtz instabilities. Once a layer of the star crystallizes, the turbulence inherent to the process spawns bubbles of lighter elements trapped inside heavier ones. In some cases, the contents of the bubble may remain degenerate long after its surroundings have cooled off, becoming the perfect source of energy of larger organisms inside the star.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">These organisms usually all converge towards a common shape, as the extremely competitive environment does not leave too much room for experimentation. Their usual anatomy is that of a flattened vitreous slug. Their oblate shape allows them to maximize their feeding area while minimizing any kind of vertical internal process, which proves too costly at such tremendous gravitational accelerations. They traverse the glass of the star by gradually becoming part of it over the course of millennia. Their chemical composition being almost the same as that of the star itself, and having no complex processes beyond the simplest of respiratory mechanisms, they find it easier to unhurriedly induce their internal structure onto the walls of the star than to actually destroy it. This way they perpetuate their own molecular arrangements while moving through an otherwise indestructible medium.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">These slugs tumble through the star for millions of years, following the magnetic lines of the field produced by the core, which are likely to eventually knot in the highly conductive bubbles of degenerate matter. The more bubbles available, the larger the slugs get, sometimes reaching kilometers in size. Each slug finds a balance between its size, and the accelerations it can endure. In deeper levels, where the gravity is lower and the food sources more abundant, larger slugs predominate over the smaller ones. Phagocytizing is not uncommon.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">As the star evolves, it loses angular momentum, causing periodic gradual contractions. The slugs, seeking to proliferate at their adequate height, routinely climb to higher levels during contractions, and later sink deeper when the star stabilizes. This events can trigger reproduction. If a slug is big enough, and certain specific conditions are met, its body may divide in two, each half taking a different route, and thus becoming two different specimens.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Some may say that slugs are hardly life at all, and rather a complex chemical process by which the star eats itself inside out, turning heavy elements into lighter ones that can escape the gravitational attraction, slowly hollowing it out. That’s none of my concern. Their structure is extremely vulnerable to torsion, unlike the star&#x27;s, so they offer a great opportunity to gather some of the purest crystals in the universe, a material so hard, inert, and under such unreachable conditions that it would be otherwise impossible to obtain. Their &quot;meat&quot; has uses in the development of medical, computational, energy production and military sectors, and is considered the most precious material yet discovered. My job is to collect as much as I can and get back to Earth.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Once inside the cavern intersecting the hole made by the bombs, I&#x27;m surrounded by the uttermost darkness. The cooled outer layers of the star are so opaque that the nucleus is not detectable at any visible wavelength from where I stand. My only way to see, and to communicate with the lander, is through sonar. Sensors under the Sub make precise coded taps on the surface which quickly propagate through the glassy material. However, the intricate subterranean structures below the surface vibrate in complex resonance modes that interfere with the original signal, making it impossible to detect anything further than a kilometer away.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I notice the perfectly flat glassy surface of the tunnel, spotted all over with smaller flat crevices of all sizes, which in turn are spotted by even smaller crevices which seem to shrink recursively. The noise of my movement resonates inside the sharp intersections between orifices, making the entire structure shimmer in my HUD. The scene reminds me of a poisonous caterpillar seen from the inside, its skin riddled with urticating hairs that branch out iteratively until you can’t make out the detail anymore. I’m forced to lower the resolution of my sonar in order to see where I’m going.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I press on through the cavern, navigating the complex cave system of interlaced slug trails. After 100 meters, I notice some faint glow from afar. It&#x27;s not a sonar reading, it&#x27;s actual visible light. Probably some unconsumed bubbles of degenerate matter. That&#x27;s really odd. In a star this old, bubbles on the surface are extremely unlikely. Plus, at this point I should have already found some decently sized slugs. Instead, the corridors are deserted.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">15 minutes have passed. This mission was supposed to collect decades worth of crystal supply, and its cost was well over the GDP of a small nation. I don&#x27;t panic. I move deeper into the cavern, quickening my pace. The extreme gravity begins to take a toll, making me painfully aware of every agonizing muscle, bone and tendon in my body. Pulsating migraines spread periodically through the inside of my brain. My eyes painfully grind with the flesh of my face as they rotate in their sockets. My knees ache where they meet the cushioned surface of the Sub, and my feet, limping further below, are swollen with excess blood, but unresponsive nonetheless. My hands are sore from lying on the control panel, the patterns of the surface ingrained onto my skin. Even lifting a finger is getting laborious.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The tunnel sinks into the star at a steady pace, the slope steeper than any I&#x27;ve ever seen in the files. I notice its area is rapidly shrinking too, almost as if the slug responsible for this tunnel was starving. It probably attempted a risky dive into the core regions, in a desperate pursuit of much needed energy. The thought of finally finding the remains of a slug at the end of the cavern is gruesomely enticing.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">As I progress through the cave, the light from the distant bubbles intensifies, drawing my attention to a nacreous reflection coming from all over the walls. The ambient glare brings out iridescent colors from the surface. I scrap some of the surface with one of the Sub&#x27;s robotic arms. Surprisingly, it comes out. Do they leave unprocessed crystal when they are dying? Was it ill? Can slugs even suffer diseases? As all sorts of questions race through my head, I catch a glimpse of intense light in the periphery of my vision. It&#x27;s gone. I&#x27;m finally losing it, the vital processes inside my brain ultimately giving away to the star&#x27;s gravity.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">30 minutes have passed. I begin to consider going back to the ship, empty-handed, but flashes of light on my sides catch my attention again. This time they remain lit when I glance at them. A feeble Aurora Borealis swirls around through the top section of the tunnel, its faint lights reflecting on the crystal cave, bringing out the infinite detail of the lustrous branching holes on its facade. Probably the intense magnetic field of the nucleus, trapped inside the caverns of its own dead shell, ionizing the languid atmosphere still remaining inside it. The light-show noticeably intensifies further along the passage. Curiosity pushes me to drag onward. The tunnel&#x27;s width dwindles as I move along. In a last effort I finally reach the end.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The hole intersects 10 meters ahead of me with a huge vertical shaft, thousands of times bigger than the one I stand in. Inside it, blinding lights dance around in ever-changing complex patterns. Intricate structures swiftly develop, reaching incredible sizes, only to dilute back into its medium, or be consumed by one of its brothers. I feel like I&#x27;m watching the rise and fall of entire civilizations, each with its unique intricate set of characteristics, fiercely fighting its way to the top, merely to shrivel down and die in the span of an instant.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">My awe is tinted by the overwhelming sense of loss at the sight of such ephemeral beauty. I hurriedly move my eyes from one side to the other, trying to absorb the essence of all the intricacies of each formation, knowing they will not be repeated ever again. My efforts are overrun by the sere size of the spectacle.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I instinctively approach the end of the tunnel, trying to gather as much of the light as possible. As I go near the end, the slope grows steeper. Suddenly, my tracks lose grip of the surface, which I now notice is coated with a thick layer of pearly substance. I quickly try to back up, reversing at maximum power, but the gravity slowly pulls me down. I panic, attempting to grab at the walls with my robotic arms, but I can&#x27;t reach the sides of the tunnel. The star drags me down the final meters of the fall, gradually approaching the intersection with the vertical shaft. I&#x27;m just over the edge, I try to look at the bottom of the pit, but it has none. The Sub finishes going over the edge, and I tumble down with it.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The lights open way for me, twirling around as if distorted by my own magnetic field, mocking me. I quickly pick up speed, the walls blurring into a featureless surface. I&#x27;m slammed against one of the sides of the pit as a result of the ever increasing Coriolis forces. As I fall, I don&#x27;t feel fear, I feel relief. Not emotional, or spiritual relief, but physical. My strained muscles expand, at last free from their own weight. For some reason, I am unable to fully comprehend the implications of my current situation, as if dumbstrucked by the oddity of it all. Instead, my mind focuses solely on the newly rediscovered material pleasures free-fall offers, savoring every moment of it.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">With no friction, no weight, and no visual landmarks, my initial daze turns into a dream-like stupor, as my fatigue finally catches up with me. For a second, I think I&#x27;m back in the ship, floating inside my capsule, safely going back to Earth. Minutes pass, perhaps even hours. I&#x27;m finally awakened from my trance by the sight of the end of the pit. I&#x27;m punched in the face once again with the realization that I am plunging to my demise. I&#x27;m unable to think clearly, my head becomes noisy with the dread of death. I finally reach the end, and go through it.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">A short-lived wave of relief spreads from head to toes. I&#x27;m awestruck by the views. I&#x27;m inside the star&#x27;s hollow core, a colossal cavern the size of the Earth, or so say my sensors, as the sere scale of it renders my human sense of proportionality totally useless. I notice I am no longer able to feel the fall. Everything around me is so immense and remote that I have no sense of movement, instead I experience once again the awkward buoyancy of weightlessness I grew so accustomed to in space.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I can&#x27;t make out a horizon, the bright-blue wall closest to me slowly fades to darker tones as I spin around, eventually returning to its initial hues as I complete a turn. There&#x27;s no edges or discernible patters anywhere around the surface, and no central nucleus at the center. However, the cave seems to be illuminated uniformly throughout its volume, as if the star was still producing some kind of light through means other than matter degeneration.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">After a while contemplating the scenery, or the lack of it, my illusion of idleness is discontinued by the scraping of charged particles hitting the exterior of my suit. I&#x27;m brought back to consciousness, and instinctively check my sensors. That&#x27;s odd. My detectors are measuring particles with a charge of just one or two thirds of that of the electron.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">There is no other way to explain it. A quick scan confirms it, I&#x27;m falling towards an intricate net of quarks and gluons, arranged in ever-changing filaments, walls, and micro-volumes. Their delicate equilibrium knits them together in lightly constrained, short-lived structures that quickly annihilate themselves after contact with my suit. A feeble, peaceful meta-stability, unfathomed by Earth&#x27;s scientists, and so easily destroyed by a clumsy miner.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">A bubble of faint light spawns around me, rapidly growing in size. The microscopic threads of quarks, untangling themselves at my touch, emit their final messages in extremely energetic wavelengths. Their sad farewell song barely registering on my retinas as tiny bright spots, taking out any cones and rods in their way. A shock wave must be in the making, an outbreak of destruction soon to be unleashed on the entire star. The frail structure, now unstable thanks to me, will crumble down like a house of cards.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">A vacuum forms at the base of my stomach, and my joints feel cold and metallic, as if they had turned into clockwork mechanisms, its gears grinding against my flesh. My bones ache as if they were shrinking inside their sockets, and a ferrous taste builds up in my tongue. Migraines spread through my head once again, but this time there&#x27;s no overwhelming gravitational force to account for them. My mind feels foggy, a haze surrounding my every thought.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">All the while, I cannot help but wonder: do neutron stars dream of neutron sheep?</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Why the hell would I ask myself that?</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">That thought was not mine.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">I am sure of that.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">It&#x27;s alive.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">What is alive?</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The star, fool. Or what&#x27;s left of it.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">But how?</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">It&#x27;s true. I&#x27;m sure, somehow. The star is indeed alive, in some sense. I distrust my own thoughts, I have no doubt they are unreliable, but I cannot avoid believing it to be absolutely true. This must be the star&#x27;s doing. Perhaps it&#x27;s tormenting me, furious at the prospect of dying at the hands of something so insignificant as myself. Or perhaps sharing ones secrets with lesser beings comes natural to gods, just as humans would share leftovers with a dog. My train of thought, guided once again, drifts towards the nature of the star. Was it a computer?</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The color charges of the quarks and gluons working as quantum tribits, three-valued quanta of information interacting with one another through the strong, weak and electromagnetic forces. The kilometric strings of quarks entangling with each other, joining at nexus points, or parting ways after a finished interaction. In a machine of this scale, even gravitation would need to be taken into account, perhaps even performing some crucial computational task.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Logic gates made of fundamental particles, information codified at its most basic level, making good use of all of nature&#x27;s symmetries. Complex calculations, perhaps even the sentience of a god, disguised as the seemingly erratic acrobatics of fragile strands of quarks.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Were black dwarfs like this one the answer to the Fermi Paradox? Did all sentient species converge towards the development of solipsist heavens? Computer simulations inside the remnants of once great furnaces. Intelligence hiding inside the cores of dead giants, occult from the barbaric, yet to develop, warmonger, spacefaring species such as mine.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">No. This was somehow bigger than that. Blind conviction dismissed any of my doubts once again. This was not the work of mortals, nor gods. This was no mere computer either. This was nature itself culminating in the pinnacle of its potential. The infinite richness of phenomena in the universe giving birth to itself. The cosmos simulating another cosmos.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Visions begin to flood my head. This star is an entire universe in on of itself, the natural laws inside of it codified in the way particles in my universe interact. Electric, magnetic and color charges, bound by the laws out here, encoding in its configuration the rules of the game inside. The masses and isospins of the strands of quarks encrypting different fields on the inside, all of their symmetries determined by the ones on the outside.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Spacetime itself, so seemingly real to an observer on the inside, just a projection of the relations between conserved quantities on the outside, the physicality of volume a mere dream of the brain. Space becoming time, and vice versa. All dimensions, intrinsically the same, only differing in the way they relate to each other. Time allowing change in space, space allowing change in time; the speed of said change constrained by the speed of sound in the medium where the universe is encoded. Two distinct manifolds, intertwined by interactions between fields arising from fundamental symmetries in their shapes. The amount of dimensions, and the structure of its causality, determined by the geometry of its components in the universe where it is contained.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">But there was more to it than that. Occult in the layers of this star laid the answer to the ultimate question. My own universe was embedded inside a star very much like this one, which was itself embedded in another star, which was itself embedded in another star, tethering a recursive web of almost infinite universes that went back to the primordial sea of nothingness that had given birth to everything. Said sea of triviality, a null-dimensional point of void, had been unstable. Barren, devoid of any substance, but paradoxically, with a finite zero-point energy.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">When reduced to the absurd, emptiness had spawned a speck of light inside of it. And nothingness was small. Infinite nothingness still spanned nothing. And so with enough specks, the light of the void flickered like a telegraph line, obeying the laws of nullity. Up and down. Up and down. Lost inside the infinity of purposelessness originated from the void, dwindling in nothingness, random patterns eventually found meaning. Encoded in their bellies, said messages contained the seeds for entire universes, although barely more elaborate than the one where they had been brought forth in. However, with enough iterations, some of those one-dimensional universes gave way to more and more complex structures of existence.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">And so cosmic darwinism ensued. While sterile universes had no offspring, and remained static in their niche space inside nothingness, more successful universes made more of themselves, slightly changing their coupling constants and causal structure between iterations, evolving into prosperous self-replicating patterns, recursively populating their own innards. The variety that this process induced in the nature and nurture of universes was immense. All possible dimensional combinations were attempted, from single axis manifolds, to infinite ones. And with all sorts of curvatures and connections to attach them together.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">In one particular cosmic lineage, universes arose with not only space and time-like dimensions, but also a boundless amount of other causally connected hyper-surfaces, each attached to the rest through bounds with speeds of causality independent from the others. So intricate and convoluted were these geometries, that entire child universes could be coded onto the eddies and crannies interwoven in the spacetime continuum around the event horizons of singularities.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">In a simpler cosmic branch, five spatial dimensions combined with two temporal ones, resulting in intricate representations of the expanded Lorentz group, and an abundance of over-complicated particle families with SU(5) symmetry. Strong relativistic effects followed from an unusually low speed of light, magnetic-like forces twisting the primordial flow of free particles into tortuous paths around each other. Most of it inevitably gathered into massive star-like hyper-spherical bodies.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">Such was the immensity of these bodies, that conditions at their cores would blend the forces of nature into its most basic components. The vast temperatures and densities at their cores weakened the interactions of its matter with an otherwise strong scalar field, greatly decreasing the inertial mass of the particles, blurring the line between fermions and bosons. These new particles followed instead braid statistics. Their symmetries broken down at their vacuum states, they arranged themselves in superconductive dominions, flowing around the core in great currents of hypercharges and isospins.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">These convective processes inside the stars would radiate massive amounts of energy towards space, shifting and molding the spacetime in their vicinity. The range of said emissions was enough to reach other stars, coupling them together via gravitational waves in a vast cosmic lattice. The ebbs and flows in the stellar streams of charge could become so high-frequency, due their immense angular momentum, that phonons in the stellar crystal dropped to wavelengths the size of molecules.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">In periods of stability, high-frequency gravitational standing waves could form between the stars, resulting in minute pockets of potential. Inside these wells, the otherwise too complex SU(5) family of elemental particles could agglutinate into huge heavy nuclei; while smaller, weakly bounded SU(3) particles were able to orbit around them in intricate atomic dispositions. These structures proliferated through the coarse vacuum of interstellar space, the next generation of universes coded onto their ever-growing 4-dimensional hypersurfaces. A filigree of cosmic computational prowess that bridged the stars. Matter pilling onto huge atomic networks in accord with the chemical laws of the crystal, the symmetries on their geometries and the couplings between their particles enciphering the very same natural laws that had given birth to them, only slightly changed.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">In another cosmic lineage, a compromise between complexity and richness was found after enough repetitions. The coupling constants were tailored for the creation of rich, yet simple physical phenomena. Its spacetime was split in two, on one hand a three-dimensional manifold with pseudo-stable orbits, and on the other a simple one-dimensional line that fully fleshed out the bountiful patterns emanating from the other side.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The symmetries of said structure allowed for a great wealth of fields, that more often than not condensed into building blocks made of nuclei of triplets with trapped singlets around it. Said building blocks came in many different flavors, and easily blended together in bounded states where they could remain static. Aided by a forgiving geometry that favored stable orbits, the constituents of this cosmic genealogy formed vast amalgamations of matter, that at their cores fused themselves into more complex arrangements, while at the same time fueled all of their surroundings with the potential for change and growth.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">So affluent was this lineage, that among the plethora of resources, some formations found themselves further and further from their original purpose. Instead of seeking the perpetuation of their universe&#x27;s architecture, they could afford the time and energy to seek their own permanence. Although ephemeral when compared to the infinite, recursively perpetual nature of their cosmos, these formations were resilient enough to eventually stumble into sentience. Like a snake head eating the head on the opposite side, the cosmos began to think about itself. They built little empires of dirt, and waged wars among themselves, and wrote poetry, and also asked many questions. One of such questions was about what they called time. They wondered why their time only flowed forward.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The vast complexity of the 3d manifold, compared to the trivial simplicity of the 1d line of time, guaranteed that their sentience always came from complex chemical structures built onto the 3-dimensional manifold. These interacted with their surroundings through the additional causal dimension. And thus when their minds entangled with their world, creating subtle shifts inside their heads along the forth dimension, developing what they called memories, these only came from the past, and not from the future.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">This gave them the impression of continuity, and understandably, thought themselves to move along &quot;time&quot;. But they were deceived, for they were not four-dimensional, their bodies were. What they conceived as themselves, their consciousness, was the 3-dimensional structures in their heads, forever stuck in their minuscule differential of time, forever reliving the same exact experience. But said differentials were so close together, and their memories of the past were so vivid and real, that there was no way of convincing one of this slices of sentience that it was indeed severed from the rest, for the nature of space and time prevented them from remembering the present, only being able to dwindle in the past, reminiscing everything but themselves. Reminiscing everything but myself.</p>
+				<p style="text-indent: 2em; margin-bottom: 1em;">The visions fade away, and I snap back to reality, unsure if it is really so. I can see nothing, the rotting flesh of the star must have taken with it every single photoreceptor on my retinas. An alarm screeches inside my suit. I have no idea how long my trance has lasted, but my speed must have been very high when I entered the core. On account of the star being hollow, I have not slowed down at all. That must be the other side coming to meet me. I feel no distinct emotion at the prospect of resuming my death, my demise eclipsed by the infinite death I had just caused. I felt nothing; and then, I was nothing.</p>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div id="blog-page" class="page min-h-screen" style="--section-color: #A03766;">
+             <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter text-white">Blog</h1>
+                <div class="space-y-12">
+                    <!-- Blog Post 1 -->
+                    <article class="border-l-4 border-white/50 pl-6">
+                        <p class="text-sm text-white/70">September 15, 2025</p>
+                        <h2 class="text-3xl font-bold text-white mt-1 mb-3">My First Post: Setting Up This Website</h2>
+                        <p class="text-gray-100 mb-4">This is a sample blog post. Here, I can share updates on my research, discuss interesting topics in astrophysics, or document personal projects.</p>
+                        <a href="#" class="font-semibold text-white hover:underline">Read More &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Page -->
+        <div id="contact-page" class="page min-h-screen" style="--section-color: #C74749;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Contact & References</h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-6xl">I'm always open to discussing new projects, research opportunities, or creative ideas. Please feel free to reach out.</p>
+                <div class="bg-[#2a1e45]/50 p-6 rounded-lg mb-12">
+                     <h2 class="text-2xl font-bold mb-3">Get in Touch</h2>
+                     <p class="text-gray-300"><strong>Email:</strong> <a href="mailto:arturo.perez.roncero@gmail.com" class="text-[#f37753] hover:underline">arturo.perez.roncero@gmail.com</a></p>
+                     <p class="text-gray-300"><strong>Location:</strong> Madrid, Spain</p>
+                </div>
+                <h2 class="text-3xl font-bold mb-6">References</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Sánchez Contreras, Carmen</h3>
+                        <p class="text-sm text-gray-400">Master’s Thesis Supervisor</p>
+                        <a href="mailto:csanchez@cab.inta-csic.es" class="text-sm text-[#f37753] hover:underline">csanchez@cab.inta-csic.es</a>
+                    </div>
+                     <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Montes Gutiérrez, David</h3>
+                        <p class="text-sm text-gray-400">Bachelor’s Thesis Supervisor</p>
+                        <a href="mailto:dmontes@ucm.es" class="text-sm text-[#f37753] hover:underline">dmontes@ucm.es</a>
+                    </div>
+                     <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Miles Páez, Paulo Alberto</h3>
+                        <p class="text-sm text-gray-400">Summer Internship Supervisor</p>
+                        <a href="mailto:pamiles@cab.inta-csic.es" class="text-sm text-[#f37753] hover:underline">pamiles@cab.inta-csic.es</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('.section-card, .nav-link');
+            const body = document.body;
+            
+            // --- Color Palette for Scrolling Background ---
+            const colors = ['#000310', '#001845', '#134D93', '#7180C6', '#804E83', '#973E66', '#C04F51', '#C04F51'];
+            const rgbColors = colors.map(hexToRgb);
+
+            function interpolateColor(color1, color2, factor) {
+                let result = color1.slice();
+                for (let i = 0; i < 3; i++) {
+                    result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+                }
+                return result;
+            }
+
+            function hexToRgb(hex) {
+                let r = 0, g = 0, b = 0;
+                if (hex.length == 7) {
+                    r = parseInt(hex.substring(1, 3), 16);
+                    g = parseInt(hex.substring(3, 5), 16);
+                    b = parseInt(hex.substring(5, 7), 16);
+                }
+                return [r, g, b];
+            }
+
+            function handleScroll() {
+                const homePage = document.getElementById('home-page');
+                if (!homePage.classList.contains('active')) return;
+
+                const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (scrollableHeight <= 0) {
+                     body.style.backgroundColor = colors[0];
+                     return;
+                }
+
+                const scrollFraction = window.scrollY / scrollableHeight;
+                const colorIndex = Math.min(rgbColors.length - 2, Math.floor(scrollFraction * (rgbColors.length - 1)));
+                const factor = (scrollFraction * (rgbColors.length - 1)) % 1;
+                
+                const newRgb = interpolateColor(rgbColors[colorIndex], rgbColors[colorIndex + 1], factor);
+                body.style.backgroundColor = `rgb(${newRgb[0]}, ${newRgb[1]}, ${newRgb[2]})`;
+            }
+
+            window.addEventListener('scroll', handleScroll);
+
+            // --- Page Navigation Logic ---
+            function switchPage(targetId) {
+                let targetPage = null;
+                pages.forEach(page => {
+                    if (page.id === targetId) {
+                        page.classList.add('active');
+                        targetPage = page;
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+
+                if (targetPage) {
+                    window.scrollTo(0, 0);
+                    if (targetId === 'home-page') {
+                        handleScroll();
+                    } else {
+                        const sectionColor = targetPage.style.getPropertyValue('--section-color');
+                        body.style.backgroundColor = sectionColor || '#020a1f';
+                    }
+                }
+            }
+
+            function handleRouteChange() {
+                const hash = window.location.hash.substring(1);
+                let targetId = 'home-page'; // Default page
+
+                if (hash) {
+                    if (hash.startsWith('writing/')) {
+                         targetId = 'reading-' + hash.split('/')[1];
+                    } else {
+                         targetId = hash + '-page';
+                    }
+                }
+
+                // Check if the target page exists
+                if (!document.getElementById(targetId)) {
+                    targetId = 'home-page';
+                }
+                
+                switchPage(targetId);
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.dataset.target;
+                    // For card clicks, navigate via hash
+                    if (link.classList.contains('section-card')) {
+                        e.preventDefault();
+                        window.location.hash = targetId.replace('-page', '');
+                    }
+                    // For nav links, the href already handles the hash change
+                });
+            });
+
+            window.addEventListener('hashchange', handleRouteChange);
+            handleRouteChange(); // Initial route handling on page load
+
+            // --- Dropdown Menu Logic ---
+            const menuButton = document.getElementById('menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            menuButton.addEventListener('click', () => {
+                dropdownMenu.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when a link is clicked
+            dropdownMenu.addEventListener('click', () => {
+                dropdownMenu.classList.add('hidden');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+	<script>
+	  function openLightbox(src) {
+		document.getElementById("lightbox-img").src = src;
+		document.getElementById("lightbox").classList.remove("hidden");
+		document.getElementById("lightbox").classList.add("flex");
+
+		// disable background scrolling
+		document.body.style.overflow = "hidden";
+	  }
+
+	  function closeLightbox() {
+		document.getElementById("lightbox").classList.remove("flex");
+		document.getElementById("lightbox").classList.add("hidden");
+
+		// restore scrolling
+		document.body.style.overflow = "auto";
+	  }
+	</script>
+	<script>
+	document.querySelectorAll('.section-card').forEach(card => {
+	  const color = card.dataset.highlight;
+	  if (color) {
+		card.style.setProperty('--highlight', color);
+	  }
+	});
+	</script>
 </body>
 </html>

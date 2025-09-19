@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arturo Pérez Roncero | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        .section-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1);
+        }
+        .page {
+            display: none;
+            animation: fadeIn 0.7s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .custom-highlight {
+            background-color: #E0FBFC; /* A light cyan/white from the stars */
+            color: #020a1f;
+        }
+        .section-card:hover h2 {
+           color: #f37753;
+        }
+        .nav-link {
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .nav-link:hover {
+            background-color: #f37753;
+            color: #020a1f;
+        }
+    </style>
+</head>
+<body class="bg-[#020a1f] text-gray-200">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60 border-b border-gray-700/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 id="home-button" class="text-2xl font-bold tracking-tighter text-white cursor-pointer hover:text-[#f37753] transition-colors">
+                Arturo Pérez Roncero
+            </h1>
+            <div class="relative">
+                <button id="menu-button" class="p-2 rounded-md hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <nav id="dropdown-menu" class="hidden absolute right-0 mt-2 w-56 bg-[#0d1b2a]/95 backdrop-blur-md rounded-lg shadow-xl ring-1 ring-white/10 overflow-hidden">
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="home-page">Home</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="education-page">Education</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="experience-page">Experience & Awards</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="skills-page">Skills</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="interests-page">Interests & Projects</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="blog-page">Blog</a>
+                    <a href="#" class="block px-4 py-3 text-sm text-gray-200 nav-link" data-target="contact-page">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 md:p-12">
+        <!-- Main Page / Home -->
+        <div id="home-page" class="page active">
+            <section class="text-center mb-16">
+                <img src="https://placehold.co/150x150/020a1f/f37753?text=APR" alt="Arturo Pérez Roncero" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-gray-600 shadow-lg">
+                <h1 class="text-4xl md:text-6xl font-black tracking-tighter text-white">Arturo Pérez Roncero</h1>
+                <p class="text-lg md:text-xl text-gray-400 mt-2">Astrophysics Graduate & Physics Researcher</p>
+                <div class="mt-6 flex justify-center items-center space-x-6 text-gray-400">
+                     <a href="mailto:arturo.perez.roncero@gmail.com" class="hover:text-[#f37753] transition-colors">arturo.perez.roncero@gmail.com</a>
+                     <span class="text-gray-600">|</span>
+                     <a href="https://arturoperezroncero.github.io/" target="_blank" class="hover:text-[#f37753] transition-colors">Personal Website</a>
+                     <span class="text-gray-600">|</span>
+                     <span>+34 693 49 25 29</span>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Education -->
+                <div class="section-card bg-[#0d1b2a]/70 p-8 rounded-2xl border border-white/10" data-target="education-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Education</h2>
+                    <div class="space-y-4 text-gray-300">
+                        <div>
+                            <h3 class="font-bold text-lg text-white">M.S. in Astrophysics</h3>
+                            <p class="text-sm">Master’s Thesis (9.2/10): <span class="italic">In Search of the Traces of the Evolution of AGB Binary Stars...</span></p>
+                            <p class="text-sm font-semibold">Mean Score: 8.41/10</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">B.S. in Physics</h3>
+                            <p class="text-sm">Bachelor’s Thesis (8/10): <span class="italic">Study of colour-magnitude diagrams with Gaia data</span></p>
+                            <p class="text-sm font-semibold">Mean Score: 7.56/10</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="section-card bg-[#0d1b2a]/70 p-8 rounded-2xl border border-white/10" data-target="experience-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Experience & Awards</h2>
+                    <div class="space-y-4 text-gray-300">
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Summer Research Intern</h3>
+                            <p class="text-sm">CAB (Centro de Astrobiología), analyzing CRIRES/VLT spectra.</p>
+                        </div>
+                         <div>
+                            <h3 class="font-bold text-lg text-white">Key Awards</h3>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li>Aditus Scholarship</li>
+                                <li>1st place in HP CodeWars (2020)</li>
+                                <li>Secondary Education Honorary Diploma</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="section-card bg-[#0d1b2a]/70 p-8 rounded-2xl border border-white/10" data-target="skills-page">
+                    <h2 class="text-3xl font-bold mb-4 text-white">Skills</h2>
+                    <div class="space-y-4 text-gray-300">
+                        <p><strong class="text-white">Languages:</strong> Fluent in English (C2), Spanish (Native), basic French.</p>
+                        <p><strong class="text-white">Programming:</strong> Fluent in Python, Matlab. Basic Java, C++.</p>
+                        <p><strong class="text-white">Astro Software:</strong> TopCat, Aladin, VOSA, Gaia & TESS data.</p>
+                        <p><strong class="text-white">Other Tools:</strong> Latex, Blender, Adobe Suite, Excel.</p>
+                    </div>
+                </div>
+
+                <!-- Interests -->
+                <div class="section-card bg-[#0d1b2a]/70 p-8 rounded-2xl border border-white/10 md:col-span-2 lg:col-span-3" data-target="interests-page">
+                     <h2 class="text-3xl font-bold mb-4 text-white">Interests & Projects</h2>
+                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div><p class="font-semibold text-white">Astronomy</p><p class="text-sm text-gray-400">Educational YouTube Channel</p></div>
+                        <div><p class="font-semibold text-white">Sci-Fi Writing</p><p class="text-sm text-gray-400">Award-winning short stories</p></div>
+                        <div><p class="font-semibold text-white">Digital Art</p><p class="text-sm text-gray-400">3D scenes in Blender</p></div>
+                        <div><p class="font-semibold text-white">Music</p><p class="text-sm text-gray-400">Drummer in Epsilon Mechanism</p></div>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subdirectory Pages -->
+        <!-- Education Page -->
+        <div id="education-page" class="page min-h-screen" style="--section-color: #020a1f;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Education</h1>
+                <div class="space-y-10">
+                    <!-- Master's Degree -->
+                    <div class="border-l-4 border-[#f37753] pl-6">
+                        <h2 class="text-3xl font-bold">M.S. in Astrophysics</h2>
+                        <p class="text-gray-400 mb-2">Universidad Complutense de Madrid | 09/2024 - 06/2025</p>
+                        <p class="font-bold custom-highlight inline-block px-2 py-1 rounded-md mb-4">Mean Score: 8.41/10</p>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">Master’s Thesis (Score: 9.2/10)</h3>
+                        <p class="italic mb-2">In Search of the Traces of the Evolution of AGB Binary Stars and pPNe: A Study of Variability with TESS</p>
+                        <p class="text-gray-300">Research of mechanisms behind brightness variability in AGB stars and pPNe, using TESS data via Python and Virtual Observatory tools. Study of new methods for flickering characterization in evolved stars using periodograms of short cadence light curves.</p>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">Relevant Subjects</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>Astrophysics Experimental Techniques (9.6/10)</li>
+                            <li>Galactic Formation and Evolution (9/10)</li>
+                            <li>Stellar Atmospheres (8.3/10)</li>
+                            <li>Standard Model Cosmology</li>
+                        </ul>
+                    </div>
+                    <!-- Bachelor's Degree -->
+                    <div class="border-l-4 border-[#b8415c] pl-6">
+                        <h2 class="text-3xl font-bold">B.S. in Physics</h2>
+                        <p class="text-gray-400 mb-2">Universidad Complutense de Madrid | 09/2020 - 06/2024</p>
+                        <p class="font-bold custom-highlight inline-block px-2 py-1 rounded-md mb-4">Mean Score: 7.56/10</p>
+                        <h3 class="text-xl font-semibold mt-4 mb-2">Bachelor’s Thesis (Score: 8/10)</h3>
+                        <p class="italic mb-2">Study of colour-magnitude diagrams with Gaia data</p>
+                        <p class="text-gray-300">Study of Color-Magnitude diagrams using the Gaia Data Release 3. Isochrone fittings in Python of 6 different open clusters using Bayesian statistics, estimations of age, metallicity and distance.</p>
+                         <h3 class="text-xl font-semibold mt-4 mb-2">Relevant Subjects</h3>
+                        <ul class="list-disc list-inside text-gray-300">
+                            <li>Quantum Physics II (10/10)</li>
+                            <li>Extragalactic Astrophysics (9.2/10)</li>
+                            <li>Cosmology (8.3/10)</li>
+                            <li>Astrophysics (8.1/10)</li>
+                        </ul>
+                    </div>
+                    <!-- Baccalaureate -->
+                    <div class="border-l-4 border-[#6d2b59] pl-6">
+                         <h2 class="text-3xl font-bold">Double Baccalaureate</h2>
+                         <p class="text-gray-400 mb-2">IES Ramiro de Maeztu | 09/2018 - 06/2020</p>
+                         <p class="font-bold custom-highlight inline-block px-2 py-1 rounded-md mb-4">Mean Score: 8.65/10</p>
+                         <h3 class="text-xl font-semibold mt-4 mb-2">Baccalaureate’s Thesis (Score: 10/10)</h3>
+                         <p class="italic mb-2">Energy cost and flight time of an orbital maneuver: from Hohmann transfers to the Interplanetary Transport Network</p>
+                    </div>
+                </div>
+
+                <!-- Expansion Example -->
+                <div class="mt-16 border-t border-white/10 pt-8">
+                    <h2 class="text-2xl font-bold mb-4">Sample Expansion: Course Projects</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <img src="https://placehold.co/600x400/020a1f/f37753?text=Project+Image" alt="Sample Project" class="rounded-lg mb-4">
+                            <h3 class="text-xl font-semibold">Stellar Evolution Simulator</h3>
+                            <p class="text-gray-400">A sample text expansion. Here I could describe a significant project from one of my courses, complete with images, code snippets, or even a video demo. This modular design makes it easy to add more projects as needed.</p>
+                        </div>
+                        <div>
+                            <div class="aspect-w-16 aspect-h-9 mb-4">
+                               <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg w-full h-full"></iframe>
+                            </div>
+                            <h3 class="text-xl font-semibold">Cosmological Simulation Visualization</h3>
+                            <p class="text-gray-400">This section allows for multimedia content. A video walkthrough of a simulation or a presentation could be embedded here, providing a dynamic look at my academic work.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Awards Page -->
+        <div id="experience-page" class="page min-h-screen" style="--section-color: #2a1e45;">
+             <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Experience & Awards</h1>
+                <div class="space-y-10">
+                    <div class="border-l-4 border-[#f37753] pl-6">
+                         <h2 class="text-3xl font-bold">Summer Research Intern</h2>
+                         <p class="text-gray-400 mb-2">CAB (Centro de Astrobiología) | with Dr. Paulo Alberto Miles Páez | June–July 2025</p>
+                         <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Analyzed CRIRES/VLT spectra to study H₃⁺ auroral emission in brown dwarfs and planetary-mass objects.</li>
+                            <li>Gained experience in data reduction, Python-based spectral analysis, and substellar atmosphere physics.</li>
+                         </ul>
+                    </div>
+                    <div class="border-l-4 border-[#b8415c] pl-6">
+                         <h2 class="text-3xl font-bold">Honors & Awards</h2>
+                         <ul class="list-disc list-inside text-gray-300 space-y-2">
+                             <li>Aditus Scholarship, excellence scholarship given to students applying to universities abroad.</li>
+                             <li>1st place in HP CodeWars Python tournament (2020).</li>
+                             <li>Secondary Education Honorary Diploma.</li>
+                             <li>Educational Enrichment Program for Students with High Abilities of the Community of Madrid (PEAC).</li>
+                             <li>Participated in numerous Physics Olympiads, and won several high school science fairs.</li>
+                         </ul>
+                    </div>
+                </div>
+                <!-- Expansion Example -->
+                <div class="mt-16 border-t border-white/10 pt-8">
+                    <h2 class="text-2xl font-bold mb-4">Sample Expansion: Internship Showcase</h2>
+                    <p class="mb-6 text-gray-400">This area could be used to elaborate on my research. I can add posters I've presented, links to publications, or a more detailed, visually-supported explanation of the project's findings.</p>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <img src="https://placehold.co/400x300/2a1e45/f37753?text=Spectrum+Plot" alt="Sample Plot" class="rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/2a1e45/f37753?text=Data+Analysis" alt="Sample Data" class="rounded-lg shadow-lg">
+                        <img src="https://placehold.co/400x300/2a1e45/f37753?text=Research+Poster" alt="Sample Poster" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <!-- Skills Page -->
+        <div id="skills-page" class="page min-h-screen" style="--section-color: #6d2b59;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Skills</h1>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Languages -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Languages</h2>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Fluent in English (C2 Proficiency)</li>
+                            <li>Fluent in Spanish (Native)</li>
+                            <li>Basic knowledge of French</li>
+                        </ul>
+                    </div>
+                    <!-- Computer Skills -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Computer Skills</h2>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Fluent in Python and Matlab</li>
+                            <li>Basic knowledge of Java and C++</li>
+                            <li>Github repository with physics simulations</li>
+                            <li>Stellar astrophysics Android App</li>
+                        </ul>
+                    </div>
+                    <!-- Other Software -->
+                    <div class="bg-[#2a1e45]/50 p-6 rounded-lg">
+                        <h2 class="text-2xl font-bold mb-3">Other Software</h2>
+                         <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Astronomical:</strong> TopCat, Aladin, VOSA, Gaia, TESS</li>
+                            <li><strong>Productivity:</strong> Latex, Excel</li>
+                            <li><strong>Creative:</strong> Blender, Adobe After Effects, Premiere, Photoshop</li>
+                        </ul>
+                    </div>
+                </div>
+                 <!-- Expansion Example -->
+                <div class="mt-16 border-t border-white/10 pt-8">
+                    <h2 class="text-2xl font-bold mb-4">Sample Expansion: Project Code</h2>
+                    <p class="mb-6 text-gray-400">Here, I could embed a GitHub Gist with a Python script for isochrone fitting or link directly to a specific repository, providing tangible proof of my programming skills.</p>
+                    <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                        <pre><code class="language-python">
+<span class="text-purple-400">import</span> numpy <span class="text-purple-400">as</span> np
+<span class="text-purple-400">from</span> matplotlib <span class="text-purple-400">import</span> pyplot <span class="text-purple-400">as</span> plt
+
+<span class="text-purple-400">def</span> <span class="text-green-400">plot_hr_diagram</span>(magnitudes, colors):
+    <span class="text-gray-500">"""A sample function to plot a color-magnitude diagram."""</span>
+    plt.figure(figsize=(8, 10))
+    plt.scatter(colors, magnitudes, s=1, alpha=0.5, c='k')
+    plt.ylim(max(magnitudes), min(magnitudes)) <span class="text-gray-500"># Invert y-axis</span>
+    plt.xlabel('Color (G_BP - G_RP)')
+    plt.ylabel('Absolute Magnitude (M_G)')
+    plt.title('Hertzsprung-Russell Diagram')
+    plt.grid(True, alpha=0.2)
+    plt.show()
+
+<span class="text-gray-500"># Placeholder for loading Gaia data...</span>
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interests Page -->
+        <div id="interests-page" class="page min-h-screen" style="--section-color: #b8415c;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Interests & Projects</h1>
+                <div class="space-y-12">
+                    <!-- Digital Art -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">Digital Art</h2>
+                        <p class="mb-6 max-w-2xl text-gray-300">I enjoy creating sci-fi inspired scenes in Blender. You can find more on my Artstation portfolio. This space is perfect for a gallery of my favorite renders.</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <img src="https://placehold.co/400x400/b8415c/ffffff?text=Render+1" alt="Blender Render 1" class="rounded-lg aspect-square object-cover">
+                            <img src="https://placehold.co/400x400/b8415c/ffffff?text=Render+2" alt="Blender Render 2" class="rounded-lg aspect-square object-cover">
+                            <img src="https://placehold.co/400x400/b8415c/ffffff?text=Render+3" alt="Blender Render 3" class="rounded-lg aspect-square object-cover">
+                            <img src="https://placehold.co/400x400/b8415c/ffffff?text=Render+4" alt="Blender Render 4" class="rounded-lg aspect-square object-cover">
+                        </div>
+                    </div>
+                    <!-- Music -->
+                     <div>
+                        <h2 class="text-3xl font-bold mb-4">Music</h2>
+                        <p class="mb-6 max-w-2xl text-gray-300">I am an experienced drummer and member of Epsilon Mechanism, an alternative rock band based in Madrid. I also play guitar and bass. I could embed our latest track or music video here.</p>
+                         <div class="flex items-center bg-gray-900/50 rounded-lg p-4">
+                            <img src="https://placehold.co/100x100/b8415c/ffffff?text=EM" alt="Epsilon Mechanism" class="rounded w-24 h-24 mr-4">
+                            <div>
+                                <h3 class="text-xl font-bold">Latest Single</h3>
+                                <p class="text-gray-400">Epsilon Mechanism</p>
+                                <button class="mt-2 bg-[#f37753] text-[#020a1f] font-bold py-2 px-4 rounded-lg hover:bg-opacity-80 transition">Listen Now</button>
+                            </div>
+                         </div>
+                    </div>
+                    <!-- Writing & Videogames -->
+                     <div class="grid md:grid-cols-2 gap-12">
+                         <div>
+                            <h2 class="text-3xl font-bold mb-4">Sci-Fi Writing</h2>
+                            <p class="text-gray-300">Avid reader of Greg Egan, Ian M. Banks and Arthur C. Clark. I write short stories of my own, some of which have won awards. I'm always happy to share them!</p>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold mb-4">Videogame Development</h2>
+                            <p class="text-gray-300">I've developed and published a didactive stellar astrophysics app on the Play Store. It was a great learning experience combining my passions for programming and astronomy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Page -->
+        <div id="blog-page" class="page min-h-screen" style="--section-color: #f37753;">
+             <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter text-white">Blog</h1>
+                <div class="space-y-12">
+                    <!-- Blog Post 1 -->
+                    <article class="border-l-4 border-white/50 pl-6">
+                        <p class="text-sm text-white/70">September 15, 2025</p>
+                        <h2 class="text-3xl font-bold text-white mt-1 mb-3">My First Post: Setting Up This Website</h2>
+                        <p class="text-gray-100 mb-4">This is a sample blog post. Here, I can share updates on my research, discuss interesting topics in astrophysics, or document personal projects. The layout is simple and expandable, allowing me to add new entries easily.</p>
+                        <a href="#" class="font-semibold text-white hover:underline">Read More &rarr;</a>
+                    </article>
+                    <!-- Blog Post 2 -->
+                    <article class="border-l-4 border-white/50 pl-6">
+                        <p class="text-sm text-white/70">September 1, 2025</p>
+                        <h2 class="text-3xl font-bold text-white mt-1 mb-3">Visualizing Black Holes with Blender</h2>
+                        <p class="text-gray-100 mb-4">A walkthrough of how I used Blender's physics and rendering engine to create a scientifically-plausible visualization of a supermassive black hole, inspired by the movie Interstellar.</p>
+                         <a href="#" class="font-semibold text-white hover:underline">Read More &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Page -->
+        <div id="contact-page" class="page min-h-screen" style="--section-color: #0d1b2a;">
+            <div class="bg-black/20 p-8 rounded-2xl">
+                <h1 class="text-5xl font-black mb-8 tracking-tighter">Contact & References</h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl">I'm always open to discussing new projects, research opportunities, or creative ideas. Please feel free to reach out.</p>
+                <div class="bg-[#2a1e45]/50 p-6 rounded-lg mb-12">
+                     <h2 class="text-2xl font-bold mb-3">Get in Touch</h2>
+                     <p class="text-gray-300"><strong>Email:</strong> <a href="mailto:arturo.perez.roncero@gmail.com" class="text-[#f37753] hover:underline">arturo.perez.roncero@gmail.com</a></p>
+                     <p class="text-gray-300"><strong>Phone:</strong> +34 693 49 25 29</p>
+                     <p class="text-gray-300"><strong>Location:</strong> Madrid, Spain</p>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-6">References</h2>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Sánchez Contreras, Carmen</h3>
+                        <p class="text-sm text-gray-400">Master’s Thesis Supervisor</p>
+                        <p class="text-sm text-gray-400">Astrobiology Center (CAB)</p>
+                        <a href="mailto:csanchez@cab.inta-csic.es" class="text-sm text-[#f37753] hover:underline">csanchez@cab.inta-csic.es</a>
+                    </div>
+                     <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Montes Gutiérrez, David</h3>
+                        <p class="text-sm text-gray-400">Bachelor’s Thesis Supervisor</p>
+                        <p class="text-sm text-gray-400">Universidad Complutense de Madrid</p>
+                        <a href="mailto:dmontes@ucm.es" class="text-sm text-[#f37753] hover:underline">dmontes@ucm.es</a>
+                    </div>
+                     <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-white">Miles Páez, Paulo Alberto</h3>
+                        <p class="text-sm text-gray-400">Summer Internship Supervisor</p>
+                        <p class="text-sm text-gray-400">Astrobiology Center (CAB)</p>
+                        <a href="mailto:pamiles@cab.inta-csic.es" class="text-sm text-[#f37753] hover:underline">pamiles@cab.inta-csic.es</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Color Palette for Scrolling Background ---
+            const colors = ['#020a1f', '#2a1e45', '#6d2b59', '#b8415c', '#f37753'];
+
+            // Function to interpolate between two colors
+            function interpolateColor(color1, color2, factor) {
+                let result = color1.slice();
+                for (let i = 0; i < 3; i++) {
+                    result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+                }
+                return result;
+            }
+
+            // Function to convert hex to rgb
+            function hexToRgb(hex) {
+                let r = 0, g = 0, b = 0;
+                if (hex.length == 4) {
+                    r = "0x" + hex[1] + hex[1];
+                    g = "0x" + hex[2] + hex[2];
+                    b = "0x" + hex[3] + hex[3];
+                } else if (hex.length == 7) {
+                    r = "0x" + hex[1] + hex[2];
+                    g = "0x" + hex[3] + hex[4];
+                    b = "0x" + hex[5] + hex[6];
+                }
+                return [parseInt(r), parseInt(g), parseInt(b)];
+            }
+
+            const rgbColors = colors.map(hexToRgb);
+
+            // --- Scroll Event Listener ---
+            window.addEventListener('scroll', () => {
+                const homePage = document.getElementById('home-page');
+                if (!homePage.classList.contains('active')) return;
+
+                const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (scrollableHeight <= 0) return;
+
+                const scrollFraction = window.scrollY / scrollableHeight;
+                const colorIndex = Math.min(rgbColors.length - 2, Math.floor(scrollFraction * (rgbColors.length - 1)));
+                const factor = (scrollFraction * (rgbColors.length - 1)) % 1;
+
+                const color1 = rgbColors[colorIndex];
+                const color2 = rgbColors[colorIndex + 1];
+
+                const newRgb = interpolateColor(color1, color2, factor);
+                document.body.style.backgroundColor = `rgb(${newRgb[0]}, ${newRgb[1]}, ${newRgb[2]})`;
+            });
+
+            // --- Page Navigation Logic ---
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('.section-card, .nav-link, #home-button');
+            const body = document.body;
+
+            function switchPage(targetId) {
+                let targetPage = null;
+                pages.forEach(page => {
+                    if (page.id === targetId) {
+                        page.classList.add('active');
+                        targetPage = page;
+                    } else {
+                        page.classList.remove('active');
+                    }
+                });
+
+                // Update body background color
+                if (targetPage) {
+                     window.scrollTo(0, 0); // Scroll to top on page change
+                    if (targetId === 'home-page') {
+                        // Re-trigger scroll to set initial color
+                        window.dispatchEvent(new Event('scroll'));
+                    } else {
+                        const sectionColor = targetPage.style.getPropertyValue('--section-color');
+                        body.style.backgroundColor = sectionColor || '#020a1f';
+                    }
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.dataset.target || 'home-page';
+                    switchPage(targetId);
+                    
+                    // Close dropdown if a nav link was clicked
+                    if(link.classList.contains('nav-link')) {
+                        document.getElementById('dropdown-menu').classList.add('hidden');
+                    }
+                });
+            });
+
+
+            // --- Dropdown Menu Logic ---
+            const menuButton = document.getElementById('menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            menuButton.addEventListener('click', () => {
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close dropdown if clicking outside
+            document.addEventListener('click', (event) => {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+            
+             // Set initial color
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+</html>
